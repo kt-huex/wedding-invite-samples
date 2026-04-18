@@ -1,0 +1,539 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Wei Ming & Priya · 10.10.2026</title>
+<meta name="description" content="A sample digital wedding invitation — Standard tier.">
+
+<!--
+  STANDARD TIER SAMPLE INVITE
+  Style: Classic warm
+  Demo couple: Wei Ming & Priya · 10 October 2026
+  RSVP WhatsApp: dummy number 6591234567 — REPLACE for real customers
+  PayNow QR: decorative placeholder SVG — REPLACE with couple's real QR image
+-->
+
+<style>
+  :root {
+    --bg: #faf5ee;
+    --bg-alt: #f2e8d9;
+    --ink: #2c2420;
+    --ink-soft: #8a6d52;
+    --accent: #5c2d2d;
+    --gold: #b08968;
+    --rule: #d4c5b0;
+    --serif: "Playfair Display", "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  main {
+    max-width: 480px;
+    margin: 0 auto;
+    background: var(--bg);
+  }
+  section {
+    padding: 3rem 1.75rem;
+    text-align: center;
+  }
+  section.alt {
+    background: var(--bg-alt);
+  }
+  .lab {
+    font-size: 10px;
+    letter-spacing: 2.5px;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .name {
+    font-family: var(--serif);
+    font-size: 42px;
+    font-weight: 400;
+    color: var(--accent);
+    margin: 0;
+    line-height: 1.1;
+  }
+  .amp {
+    font-family: var(--serif);
+    font-size: 24px;
+    color: var(--gold);
+    font-style: italic;
+    margin: 10px 0;
+  }
+  .date {
+    font-size: 13px;
+    letter-spacing: 3px;
+    color: var(--ink);
+    margin-top: 16px;
+  }
+  .sub {
+    font-size: 11px;
+    color: var(--ink-soft);
+    margin-top: 6px;
+    letter-spacing: 1px;
+  }
+  .divider {
+    width: 40px;
+    height: 1px;
+    background: var(--gold);
+    margin: 16px auto;
+    opacity: 0.5;
+    border: none;
+  }
+  .quote {
+    font-family: var(--serif);
+    font-size: 15px;
+    font-style: italic;
+    color: var(--ink);
+    line-height: 1.7;
+    margin: 14px 0 0;
+  }
+
+  /* Countdown */
+  .cd {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin-top: 18px;
+  }
+  .cd-n {
+    font-family: var(--serif);
+    font-size: 32px;
+    font-weight: 400;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .cd-l {
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+    margin-top: 8px;
+  }
+
+  /* Cards */
+  .card {
+    background: var(--bg);
+    border: 0.5px solid var(--rule);
+    border-radius: 2px;
+    padding: 1.5rem;
+    margin-top: 14px;
+    text-align: center;
+  }
+  .card-t {
+    font-family: var(--serif);
+    font-size: 19px;
+    color: var(--accent);
+    margin: 0 0 10px;
+  }
+  .card-i {
+    font-size: 13px;
+    color: var(--ink);
+    line-height: 1.7;
+    margin: 3px 0;
+  }
+  .card-meta {
+    color: var(--ink-soft);
+    margin-top: 10px;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 32px;
+    border-radius: 2px;
+    font-size: 12px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    margin-top: 16px;
+    border: none;
+    cursor: pointer;
+  }
+  .btn-sm {
+    padding: 10px 20px;
+    font-size: 10px;
+    margin-top: 14px;
+  }
+  .btn-filled {
+    background: var(--accent);
+    color: var(--bg);
+  }
+  .btn-outline {
+    background: transparent;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+  }
+
+  /* Dress code */
+  .swatches {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    margin-top: 16px;
+    flex-wrap: wrap;
+  }
+  .swatch {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+  }
+  .swatch-dot {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 0.5px solid var(--rule);
+  }
+  .swatch-lab {
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+  }
+
+  /* Gallery */
+  .gal {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    margin-top: 14px;
+  }
+  .tile {
+    aspect-ratio: 1;
+    border-radius: 2px;
+    background: #ede0cc;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .tile-n {
+    font-family: var(--serif);
+    font-size: 24px;
+    color: var(--gold);
+    font-weight: 400;
+    line-height: 1;
+  }
+  .tile-l {
+    font-size: 8px;
+    letter-spacing: 2px;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+    margin-top: 6px;
+  }
+
+  /* Getting there rows */
+  .trip {
+    display: grid;
+    gap: 10px;
+    margin-top: 16px;
+    text-align: left;
+  }
+  .trip-row {
+    background: var(--bg);
+    border: 0.5px solid var(--rule);
+    border-radius: 2px;
+    padding: 14px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .trip-icon {
+    flex: 0 0 28px;
+    color: var(--accent);
+    padding-top: 2px;
+  }
+  .trip-t {
+    font-family: var(--serif);
+    font-size: 14px;
+    color: var(--accent);
+    margin: 0 0 4px;
+  }
+  .trip-i {
+    font-size: 12px;
+    color: var(--ink);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* Gift / PayNow */
+  .qr-box {
+    background: var(--bg);
+    border: 0.5px solid var(--rule);
+    border-radius: 2px;
+    padding: 1.75rem 1.25rem;
+    margin-top: 14px;
+    text-align: center;
+  }
+  .qr-img {
+    width: 160px;
+    height: 160px;
+    background: #fff;
+    border: 0.5px solid var(--rule);
+    margin: 0 auto 14px;
+    display: block;
+    padding: 12px;
+  }
+  .qr-label {
+    font-size: 12px;
+    color: var(--ink);
+    line-height: 1.6;
+    margin: 6px 0;
+  }
+  .qr-num {
+    font-family: var(--serif);
+    font-size: 15px;
+    color: var(--accent);
+    letter-spacing: 2px;
+  }
+
+  /* Footer */
+  footer {
+    padding: 2.5rem 1.75rem 3rem;
+    text-align: center;
+    background: var(--accent);
+    color: var(--rule);
+  }
+  .foot-t {
+    font-family: var(--serif);
+    font-size: 20px;
+    font-style: italic;
+    color: var(--bg);
+    margin: 0 0 6px;
+  }
+  .foot-s {
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-top: 10px;
+  }
+</style>
+</head>
+<body>
+<main>
+
+  <!-- HERO -->
+  <section>
+    <div class="lab">The wedding of</div>
+    <svg width="54" height="24" viewBox="0 0 44 20" style="display:block;margin:18px auto 16px" aria-hidden="true">
+      <path d="M4 10 Q22 2 40 10" stroke="#b08968" stroke-width="1" fill="none"/>
+      <path d="M14 8 Q14 4 17 4" stroke="#b08968" stroke-width="0.8" fill="none"/>
+      <path d="M22 5 Q22 1 25 1" stroke="#b08968" stroke-width="0.8" fill="none"/>
+      <path d="M30 8 Q30 4 33 4" stroke="#b08968" stroke-width="0.8" fill="none"/>
+      <circle cx="22" cy="4" r="1.2" fill="#b08968"/>
+    </svg>
+    <h1 class="name">Wei Ming</h1>
+    <div class="amp">&amp;</div>
+    <h1 class="name">Priya</h1>
+    <hr class="divider">
+    <div class="date">10 &middot; 10 &middot; 2026</div>
+    <div class="sub">Saturday &middot; Singapore</div>
+  </section>
+
+  <!-- COUNTDOWN -->
+  <section class="alt">
+    <div class="lab">Counting down</div>
+    <div class="cd">
+      <div><div class="cd-n" id="cd-d">—</div><div class="cd-l">Days</div></div>
+      <div><div class="cd-n" id="cd-h">—</div><div class="cd-l">Hrs</div></div>
+      <div><div class="cd-n" id="cd-m">—</div><div class="cd-l">Min</div></div>
+      <div><div class="cd-n" id="cd-s">—</div><div class="cd-l">Sec</div></div>
+    </div>
+  </section>
+
+  <!-- OUR STORY -->
+  <section>
+    <div class="lab">Our story</div>
+    <p class="quote">Two hearts, one quiet evening at a kopitiam in Tiong Bahru, and a conversation that never really ended.</p>
+  </section>
+
+  <!-- EVENTS -->
+  <section class="alt">
+    <div class="lab">Celebrate with us</div>
+
+    <div class="card">
+      <p class="card-t">Solemnisation</p>
+      <p class="card-i">Saturday, 10 October 2026</p>
+      <p class="card-i">11:00 AM</p>
+      <p class="card-i" style="margin-top:10px">Chapel of the Resurrection</p>
+      <p class="card-i" style="color:var(--ink-soft);font-size:12px">5 Ophir Road, Singapore 188910</p>
+      <a class="btn btn-sm btn-outline" href="https://maps.google.com/?q=Chapel+of+the+Resurrection+Singapore" target="_blank" rel="noopener">Get directions</a>
+    </div>
+
+    <div class="card">
+      <p class="card-t">Reception Dinner</p>
+      <p class="card-i">Saturday, 10 October 2026</p>
+      <p class="card-i">6:30 PM</p>
+      <p class="card-i" style="margin-top:10px">Grand Copthorne Waterfront</p>
+      <p class="card-i" style="color:var(--ink-soft);font-size:12px">392 Havelock Road, Singapore 169663</p>
+      <a class="btn btn-sm btn-outline" href="https://maps.google.com/?q=Grand+Copthorne+Waterfront+Singapore" target="_blank" rel="noopener">Get directions</a>
+    </div>
+  </section>
+
+  <!-- DRESS CODE -->
+  <section>
+    <div class="lab">What to wear</div>
+    <p class="quote" style="margin-bottom:4px">Garden elegance &middot; think dusty rose, sage, and cream.</p>
+    <div class="swatches">
+      <div class="swatch"><div class="swatch-dot" style="background:#d4a5a5"></div><div class="swatch-lab">Rose</div></div>
+      <div class="swatch"><div class="swatch-dot" style="background:#a8b89c"></div><div class="swatch-lab">Sage</div></div>
+      <div class="swatch"><div class="swatch-dot" style="background:#ede0cc"></div><div class="swatch-lab">Cream</div></div>
+      <div class="swatch"><div class="swatch-dot" style="background:#b08968"></div><div class="swatch-lab">Gold</div></div>
+    </div>
+    <p class="card-meta" style="margin-top:18px">Kindly avoid white &middot; Semi-formal</p>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="alt">
+    <div class="lab">Moments together</div>
+    <div class="gal">
+      <div class="tile"><div class="tile-n">01</div><div class="tile-l">Photo</div></div>
+      <div class="tile"><div class="tile-n">02</div><div class="tile-l">Photo</div></div>
+      <div class="tile"><div class="tile-n">03</div><div class="tile-l">Photo</div></div>
+      <div class="tile"><div class="tile-n">04</div><div class="tile-l">Photo</div></div>
+      <div class="tile"><div class="tile-n">05</div><div class="tile-l">Photo</div></div>
+      <div class="tile"><div class="tile-n">06</div><div class="tile-l">Photo</div></div>
+    </div>
+  </section>
+
+  <!-- GETTING THERE -->
+  <section>
+    <div class="lab">Getting there</div>
+    <div class="trip">
+
+      <div class="trip-row">
+        <div class="trip-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <rect x="6" y="3" width="12" height="15" rx="3" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M9 18l-1 3M15 18l1 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <circle cx="9" cy="15" r="0.8" fill="currentColor"/>
+            <circle cx="15" cy="15" r="0.8" fill="currentColor"/>
+          </svg>
+        </div>
+        <div>
+          <p class="trip-t">By MRT</p>
+          <p class="trip-i">Havelock Station, Exit 2 &middot; 5 min walk</p>
+        </div>
+      </div>
+
+      <div class="trip-row">
+        <div class="trip-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M4 14v4a1 1 0 001 1h2a1 1 0 001-1v-1h8v1a1 1 0 001 1h2a1 1 0 001-1v-4l-2-6H6l-2 6z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+            <circle cx="7.5" cy="14" r="1" fill="currentColor"/>
+            <circle cx="16.5" cy="14" r="1" fill="currentColor"/>
+          </svg>
+        </div>
+        <div>
+          <p class="trip-t">By car</p>
+          <p class="trip-i">Hotel basement car park &middot; $4/hr<br>Tends to fill up by 6 PM</p>
+        </div>
+      </div>
+
+      <div class="trip-row">
+        <div class="trip-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M6 16v2a1 1 0 001 1h2a1 1 0 001-1v-1m4 0v1a1 1 0 001 1h2a1 1 0 001-1v-2m0 0l-1.5-5.5A2 2 0 0016.6 8H7.4a2 2 0 00-1.9 1.5L4 15h16z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+            <path d="M9 4h6v4H9z" stroke="currentColor" stroke-width="1.5"/>
+          </svg>
+        </div>
+        <div>
+          <p class="trip-t">By Grab or taxi</p>
+          <p class="trip-i">Ask the driver for the main lobby entrance on Havelock Road</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- GIFT -->
+  <section class="alt">
+    <div class="lab">A note on gifts</div>
+    <p class="quote" style="margin-bottom:14px">Your presence is the greatest gift. If you wish to send a token of blessing, it would be warmly received.</p>
+    <div class="qr-box">
+      <svg class="qr-img" viewBox="0 0 20 20" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+        <!-- Decorative QR placeholder — real couples provide their own PayNow QR image -->
+        <rect width="20" height="20" fill="#fff"/>
+        <g fill="#2c2420">
+          <rect x="1" y="1" width="5" height="5"/><rect x="2" y="2" width="3" height="3" fill="#fff"/><rect x="2.5" y="2.5" width="2" height="2"/>
+          <rect x="14" y="1" width="5" height="5"/><rect x="15" y="2" width="3" height="3" fill="#fff"/><rect x="15.5" y="2.5" width="2" height="2"/>
+          <rect x="1" y="14" width="5" height="5"/><rect x="2" y="15" width="3" height="3" fill="#fff"/><rect x="2.5" y="15.5" width="2" height="2"/>
+          <rect x="8" y="1" width="1" height="1"/><rect x="10" y="1" width="1" height="1"/><rect x="12" y="1" width="1" height="1"/>
+          <rect x="7" y="3" width="1" height="1"/><rect x="9" y="3" width="1" height="1"/><rect x="11" y="3" width="1" height="1"/><rect x="13" y="3" width="1" height="1"/>
+          <rect x="8" y="5" width="1" height="1"/><rect x="10" y="5" width="1" height="1"/><rect x="12" y="5" width="1" height="1"/>
+          <rect x="1" y="8" width="1" height="1"/><rect x="3" y="8" width="1" height="1"/><rect x="5" y="8" width="1" height="1"/><rect x="7" y="8" width="1" height="1"/><rect x="9" y="8" width="1" height="1"/><rect x="11" y="8" width="1" height="1"/><rect x="13" y="8" width="1" height="1"/><rect x="15" y="8" width="1" height="1"/><rect x="17" y="8" width="1" height="1"/>
+          <rect x="2" y="10" width="1" height="1"/><rect x="4" y="10" width="1" height="1"/><rect x="6" y="10" width="1" height="1"/><rect x="8" y="10" width="1" height="1"/><rect x="10" y="10" width="1" height="1"/><rect x="12" y="10" width="1" height="1"/><rect x="14" y="10" width="1" height="1"/><rect x="16" y="10" width="1" height="1"/><rect x="18" y="10" width="1" height="1"/>
+          <rect x="1" y="12" width="1" height="1"/><rect x="3" y="12" width="1" height="1"/><rect x="5" y="12" width="1" height="1"/><rect x="9" y="12" width="1" height="1"/><rect x="11" y="12" width="1" height="1"/><rect x="13" y="12" width="1" height="1"/><rect x="15" y="12" width="1" height="1"/><rect x="17" y="12" width="1" height="1"/>
+          <rect x="8" y="14" width="1" height="1"/><rect x="10" y="14" width="1" height="1"/><rect x="12" y="14" width="1" height="1"/><rect x="14" y="14" width="5" height="5"/><rect x="15" y="15" width="3" height="3" fill="#fff"/><rect x="15.5" y="15.5" width="2" height="2"/>
+          <rect x="7" y="16" width="1" height="1"/><rect x="9" y="16" width="1" height="1"/><rect x="11" y="16" width="1" height="1"/><rect x="13" y="16" width="1" height="1"/>
+          <rect x="8" y="18" width="1" height="1"/><rect x="10" y="18" width="1" height="1"/><rect x="12" y="18" width="1" height="1"/>
+        </g>
+      </svg>
+      <p class="qr-label">Scan to send via PayNow</p>
+      <p class="qr-num">9123 4567</p>
+      <p class="qr-label" style="color:var(--ink-soft);font-size:11px">Wei Ming Tan</p>
+    </div>
+  </section>
+
+  <!-- RSVP -->
+  <section>
+    <div class="lab">Kindly reply by 15 September</div>
+    <p class="quote">We would love to know if you can celebrate with us.</p>
+    <a class="btn btn-filled" href="https://wa.me/6591234567?text=Hi%20Wei%20Ming%20%26%20Priya%2C%20I%20will%20be%20attending%20your%20wedding%20on%2010%20Oct%202026%20%E2%9C%A8" target="_blank" rel="noopener">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20.5 3.5A11 11 0 0 0 3.6 17.3L2 22l4.9-1.5A11 11 0 1 0 20.5 3.5z" stroke="#faf5ee" stroke-width="1.5"/></svg>
+      RSVP via WhatsApp
+    </a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <svg width="34" height="20" viewBox="0 0 44 20" style="display:block;margin:0 auto 12px" aria-hidden="true">
+      <path d="M4 10 Q22 2 40 10" stroke="#b08968" stroke-width="1" fill="none"/>
+      <circle cx="22" cy="4" r="1.2" fill="#b08968"/>
+    </svg>
+    <p class="foot-t">With love,</p>
+    <p class="foot-t" style="margin-bottom:4px">Wei Ming &amp; Priya</p>
+    <div class="foot-s">#weiloveshispriya</div>
+  </footer>
+
+</main>
+
+<script>
+  (function () {
+    var target = new Date('2026-10-10T11:00:00+08:00').getTime();
+    var elD = document.getElementById('cd-d');
+    var elH = document.getElementById('cd-h');
+    var elM = document.getElementById('cd-m');
+    var elS = document.getElementById('cd-s');
+    function tick() {
+      var diff = Math.max(0, target - Date.now());
+      var d = Math.floor(diff / 86400000);
+      var h = Math.floor((diff % 86400000) / 3600000);
+      var m = Math.floor((diff % 3600000) / 60000);
+      var s = Math.floor((diff % 60000) / 1000);
+      elD.textContent = d;
+      elH.textContent = String(h).padStart(2, '0');
+      elM.textContent = String(m).padStart(2, '0');
+      elS.textContent = String(s).padStart(2, '0');
+    }
+    tick();
+    setInterval(tick, 1000);
+  })();
+</script>
+</body>
+</html>
