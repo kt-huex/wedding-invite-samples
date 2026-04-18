@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Wei Ming & Priya · 10.10.2026</title>
+<meta name="description" content="A sample digital wedding invitation — Basic tier.">
+
+<!--
+  =======================================================================
+  BASIC TIER SAMPLE INVITE
+  =======================================================================
+  Style: Classic warm
+  Demo couple: Wei Ming & Priya
+  Demo date: 10 October 2026
+  Demo venue: The Glasshouse at Fort Canning (for display only)
+  RSVP WhatsApp: dummy number 6591234567 — REPLACE for real customers
+  =======================================================================
+  Customer swap list:
+    1. <title> and meta description
+    2. Countdown target date in the <script> at the bottom
+    3. Couple names (search for "Wei Ming" and "Priya")
+    4. Event date/time/venue text
+    5. Venue address text
+    6. "Get directions" button href (https://maps.google.com/?q=...)
+    7. RSVP WhatsApp link (href="https://wa.me/65XXXXXXXX?text=...")
+    8. Hashtag in footer
+  =======================================================================
+-->
+
+<style>
+  :root {
+    --bg: #faf5ee;
+    --bg-alt: #f2e8d9;
+    --ink: #2c2420;
+    --ink-soft: #8a6d52;
+    --accent: #5c2d2d;
+    --gold: #b08968;
+    --rule: #d4c5b0;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  main {
+    max-width: 480px;
+    margin: 0 auto;
+    background: var(--bg);
+  }
+  section {
+    padding: 3rem 1.75rem;
+    text-align: center;
+  }
+  section.alt {
+    background: var(--bg-alt);
+  }
+  .lab {
+    font-size: 10px;
+    letter-spacing: 2.5px;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .name {
+    font-family: "Playfair Display", "Cormorant Garamond", Georgia, "Times New Roman", serif;
+    font-size: 42px;
+    font-weight: 400;
+    color: var(--accent);
+    margin: 0;
+    line-height: 1.1;
+  }
+  .amp {
+    font-family: "Playfair Display", "Cormorant Garamond", Georgia, "Times New Roman", serif;
+    font-size: 24px;
+    color: var(--gold);
+    font-style: italic;
+    margin: 10px 0;
+  }
+  .date {
+    font-size: 13px;
+    letter-spacing: 3px;
+    color: var(--ink);
+    margin-top: 16px;
+  }
+  .sub {
+    font-size: 11px;
+    color: var(--ink-soft);
+    margin-top: 6px;
+    letter-spacing: 1px;
+  }
+  .divider {
+    width: 40px;
+    height: 1px;
+    background: var(--gold);
+    margin: 16px auto;
+    opacity: 0.5;
+    border: none;
+  }
+
+  /* Countdown */
+  .cd {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin-top: 18px;
+  }
+  .cd-n {
+    font-family: "Playfair Display", "Cormorant Garamond", Georgia, "Times New Roman", serif;
+    font-size: 32px;
+    font-weight: 400;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .cd-l {
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+    margin-top: 8px;
+  }
+
+  /* Event card */
+  .card {
+    background: var(--bg);
+    border: 0.5px solid var(--rule);
+    border-radius: 2px;
+    padding: 1.5rem;
+    margin-top: 14px;
+    text-align: center;
+  }
+  .card-t {
+    font-family: "Playfair Display", "Cormorant Garamond", Georgia, "Times New Roman", serif;
+    font-size: 19px;
+    color: var(--accent);
+    margin: 0 0 10px;
+  }
+  .card-i {
+    font-size: 13px;
+    color: var(--ink);
+    line-height: 1.7;
+    margin: 3px 0;
+  }
+  .card-meta {
+    color: var(--ink-soft);
+    margin-top: 10px;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+
+  /* Buttons — shared style */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 32px;
+    border-radius: 2px;
+    font-size: 12px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    margin-top: 16px;
+    border: none;
+    cursor: pointer;
+  }
+  .btn-filled {
+    background: var(--accent);
+    color: var(--bg);
+  }
+  .btn-outline {
+    background: transparent;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+  }
+
+  /* Venue card */
+  .venue-card {
+    background: var(--bg);
+    border: 0.5px solid var(--rule);
+    border-radius: 2px;
+    padding: 2rem 1.5rem;
+    margin-top: 14px;
+    text-align: center;
+  }
+  .venue-icon {
+    display: block;
+    margin: 0 auto 14px;
+  }
+  .venue-name {
+    font-family: "Playfair Display", "Cormorant Garamond", Georgia, "Times New Roman", serif;
+    font-size: 18px;
+    color: var(--accent);
+    margin: 0 0 8px;
+  }
+  .venue-addr {
+    font-size: 13px;
+    color: var(--ink);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  /* Footer */
+  footer {
+    padding: 2.5rem 1.75rem 3rem;
+    text-align: center;
+    background: var(--accent);
+    color: var(--rule);
+  }
+  .foot-t {
+    font-family: "Playfair Display", "Cormorant Garamond", Georgia, "Times New Roman", serif;
+    font-size: 20px;
+    font-style: italic;
+    color: var(--bg);
+    margin: 0 0 6px;
+  }
+  .foot-s {
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-top: 10px;
+  }
+</style>
+</head>
+<body>
+<main>
+
+  <!-- HERO -->
+  <section>
+    <div class="lab">The wedding of</div>
+    <svg width="54" height="24" viewBox="0 0 44 20" style="display:block;margin:18px auto 16px" aria-hidden="true">
+      <path d="M4 10 Q22 2 40 10" stroke="#b08968" stroke-width="1" fill="none"/>
+      <path d="M14 8 Q14 4 17 4" stroke="#b08968" stroke-width="0.8" fill="none"/>
+      <path d="M22 5 Q22 1 25 1" stroke="#b08968" stroke-width="0.8" fill="none"/>
+      <path d="M30 8 Q30 4 33 4" stroke="#b08968" stroke-width="0.8" fill="none"/>
+      <circle cx="22" cy="4" r="1.2" fill="#b08968"/>
+    </svg>
+    <h1 class="name">Wei Ming</h1>
+    <div class="amp">&amp;</div>
+    <h1 class="name">Priya</h1>
+    <hr class="divider">
+    <div class="date">10 &middot; 10 &middot; 2026</div>
+    <div class="sub">Saturday &middot; Singapore</div>
+  </section>
+
+  <!-- COUNTDOWN -->
+  <section class="alt">
+    <div class="lab">Counting down</div>
+    <div class="cd">
+      <div><div class="cd-n" id="cd-d">—</div><div class="cd-l">Days</div></div>
+      <div><div class="cd-n" id="cd-h">—</div><div class="cd-l">Hrs</div></div>
+      <div><div class="cd-n" id="cd-m">—</div><div class="cd-l">Min</div></div>
+      <div><div class="cd-n" id="cd-s">—</div><div class="cd-l">Sec</div></div>
+    </div>
+  </section>
+
+  <!-- EVENT -->
+  <section>
+    <div class="lab">Celebrate with us</div>
+    <div class="card">
+      <p class="card-t">Ceremony &amp; Lunch</p>
+      <p class="card-i">Saturday, 10 October 2026</p>
+      <p class="card-i">11:30 AM &middot; Lunch to follow</p>
+      <p class="card-i" style="margin-top:10px">The Glasshouse at Fort Canning</p>
+      <p class="card-meta">Semi-formal &middot; Garden attire</p>
+    </div>
+  </section>
+
+  <!-- RSVP -->
+  <section class="alt">
+    <div class="lab">Kindly reply by 15 September</div>
+    <p style="font-family: 'Playfair Display', 'Cormorant Garamond', Georgia, 'Times New Roman', serif; font-size: 15px; font-style: italic; color: var(--ink); line-height: 1.7; margin: 14px 0 0;">
+      Your presence is the greatest gift. Please let us know if you can make it.
+    </p>
+    <a class="btn btn-filled" href="https://wa.me/6591234567?text=Hi%20Wei%20Ming%20%26%20Priya%2C%20I%20will%20be%20attending%20your%20wedding%20on%2010%20Oct%202026%20%E2%9C%A8" target="_blank" rel="noopener">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20.5 3.5A11 11 0 0 0 3.6 17.3L2 22l4.9-1.5A11 11 0 1 0 20.5 3.5z" stroke="#faf5ee" stroke-width="1.5"/></svg>
+      RSVP via WhatsApp
+    </a>
+  </section>
+
+  <!-- VENUE -->
+  <section>
+    <div class="lab">Find the venue</div>
+    <div class="venue-card">
+      <svg class="venue-icon" width="36" height="36" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M12 21s-7-4.5-7-11a7 7 0 0 1 14 0c0 6.5-7 11-7 11z" stroke="#5c2d2d" stroke-width="1.5"/>
+        <circle cx="12" cy="10" r="2.5" stroke="#5c2d2d" stroke-width="1.5"/>
+      </svg>
+      <p class="venue-name">The Glasshouse at Fort Canning</p>
+      <p class="venue-addr">River Valley Road<br>Singapore 179037</p>
+      <a class="btn btn-outline" href="https://maps.google.com/?q=Fort+Canning+Park+Singapore" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M9 20l-5-2V4l5 2m0 14l6-2m-6 2V6m6 12l5 2V6l-5-2m0 14V4m0 0L9 6" stroke="#5c2d2d" stroke-width="1.5" stroke-linejoin="round"/>
+        </svg>
+        Get directions
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <svg width="34" height="20" viewBox="0 0 44 20" style="display:block;margin:0 auto 12px" aria-hidden="true">
+      <path d="M4 10 Q22 2 40 10" stroke="#b08968" stroke-width="1" fill="none"/>
+      <circle cx="22" cy="4" r="1.2" fill="#b08968"/>
+    </svg>
+    <p class="foot-t">With love,</p>
+    <p class="foot-t" style="margin-bottom:4px">Wei Ming &amp; Priya</p>
+    <div class="foot-s">#weiloveshispriya</div>
+  </footer>
+
+</main>
+
+<script>
+  // Countdown target — change this one line for each real customer
+  (function () {
+    var target = new Date('2026-10-10T11:30:00+08:00').getTime();
+    var elD = document.getElementById('cd-d');
+    var elH = document.getElementById('cd-h');
+    var elM = document.getElementById('cd-m');
+    var elS = document.getElementById('cd-s');
+    function tick() {
+      var diff = Math.max(0, target - Date.now());
+      var d = Math.floor(diff / 86400000);
+      var h = Math.floor((diff % 86400000) / 3600000);
+      var m = Math.floor((diff % 3600000) / 60000);
+      var s = Math.floor((diff % 60000) / 1000);
+      elD.textContent = d;
+      elH.textContent = String(h).padStart(2, '0');
+      elM.textContent = String(m).padStart(2, '0');
+      elS.textContent = String(s).padStart(2, '0');
+    }
+    tick();
+    setInterval(tick, 1000);
+  })();
+</script>
+</body>
+</html>
