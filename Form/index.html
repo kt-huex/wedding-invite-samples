@@ -1,0 +1,671 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Start your invite · Intake form</title>
+<meta name="description" content="Tell us about your wedding, and we'll craft your digital invite.">
+
+<!--
+  INTAKE FORM
+  URL params: ?tier=Basic | Standard | Premium (pre-selects the tier)
+  Destination WhatsApp: +65 8083 3409 (formatted as 6580833409)
+-->
+
+<style>
+  :root {
+    --bg: #faf5ee;
+    --bg-alt: #f2e8d9;
+    --ink: #2c2420;
+    --ink-soft: #8a6d52;
+    --accent: #5c2d2d;
+    --gold: #b08968;
+    --rule: #d4c5b0;
+    --serif: "Playfair Display", "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--bg); color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  main {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem 4rem;
+  }
+
+  .intro { text-align: center; margin-bottom: 2.5rem; }
+  .lab {
+    font-size: 10px; letter-spacing: 2.5px; color: var(--ink-soft);
+    text-transform: uppercase; font-weight: 500;
+  }
+  h1 {
+    font-family: var(--serif); font-size: 32px; font-weight: 400;
+    color: var(--accent); margin: 12px 0 10px; line-height: 1.15;
+  }
+  .lede {
+    font-family: var(--serif); font-style: italic;
+    font-size: 15px; color: var(--ink); line-height: 1.7;
+  }
+  .divider {
+    width: 40px; height: 1px; background: var(--gold);
+    margin: 16px auto; opacity: 0.5; border: none;
+  }
+
+  /* Sections */
+  fieldset {
+    border: none; padding: 0; margin: 0 0 2rem;
+    background: var(--bg-alt);
+    border-radius: 2px;
+    padding: 1.75rem 1.5rem;
+  }
+  legend {
+    font-family: var(--serif);
+    font-size: 20px; color: var(--accent);
+    padding: 0;
+    display: block;
+    width: 100%;
+    margin-bottom: 4px;
+  }
+  .hint {
+    font-size: 12px; color: var(--ink-soft);
+    line-height: 1.6; margin: 0 0 16px;
+  }
+
+  /* Inputs */
+  label {
+    display: block;
+    font-size: 12px; color: var(--ink-soft);
+    letter-spacing: 1px; text-transform: uppercase;
+    margin-bottom: 6px; margin-top: 14px;
+    font-weight: 500;
+  }
+  label:first-of-type { margin-top: 0; }
+  input[type="text"], input[type="date"], input[type="time"], input[type="tel"], input[type="email"], textarea, select {
+    width: 100%;
+    background: var(--bg);
+    border: 0.5px solid var(--rule);
+    color: var(--ink);
+    padding: 12px 14px;
+    border-radius: 2px;
+    font-size: 14px;
+    font-family: inherit;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  textarea { min-height: 80px; resize: vertical; line-height: 1.5; }
+  input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
+  .row {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+  }
+  @media (max-width: 480px) {
+    .row { grid-template-columns: 1fr; }
+  }
+
+  /* Template picker */
+  .templates {
+    display: grid; gap: 8px;
+    margin-top: 8px;
+  }
+  .template-btn {
+    text-align: left;
+    background: var(--bg);
+    border: 0.5px solid var(--rule);
+    padding: 12px 14px;
+    border-radius: 2px;
+    font-size: 13px;
+    color: var(--ink);
+    font-family: var(--serif);
+    font-style: italic;
+    cursor: pointer;
+    line-height: 1.5;
+  }
+  .template-btn:hover { border-color: var(--accent); }
+
+  /* Checkboxes / radios */
+  .opt-grid {
+    display: grid; gap: 8px;
+    margin-top: 8px;
+  }
+  .opt {
+    display: flex; align-items: flex-start; gap: 10px;
+    background: var(--bg);
+    border: 0.5px solid var(--rule);
+    padding: 12px 14px;
+    border-radius: 2px;
+    cursor: pointer;
+  }
+  .opt input { margin-top: 2px; flex-shrink: 0; }
+  .opt-text {
+    font-size: 13px;
+    color: var(--ink);
+    line-height: 1.5;
+  }
+  .opt-price {
+    color: var(--ink-soft);
+    font-family: var(--serif);
+    margin-left: 6px;
+  }
+
+  /* Tier switch */
+  .tier-pills {
+    display: flex; gap: 6px; margin-top: 8px;
+    flex-wrap: wrap;
+  }
+  .tier-pill {
+    flex: 1;
+    background: var(--bg);
+    border: 0.5px solid var(--rule);
+    padding: 10px 8px;
+    border-radius: 20px;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    cursor: pointer;
+    text-align: center;
+    font-family: inherit;
+  }
+  .tier-pill.active {
+    background: var(--accent);
+    color: var(--bg);
+    border-color: var(--accent);
+  }
+
+  /* Hidden sections based on tier */
+  .standard-only, .premium-only { display: none; }
+  body[data-tier="Standard"] .standard-only,
+  body[data-tier="Premium"] .standard-only,
+  body[data-tier="Premium"] .premium-only { display: block; }
+
+  /* Submit */
+  .submit-wrap { text-align: center; margin-top: 2.5rem; }
+  .btn-submit {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--accent);
+    color: var(--bg);
+    border: none;
+    padding: 18px 36px;
+    border-radius: 2px;
+    font-size: 12px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  .btn-submit:hover { opacity: 0.95; }
+  .submit-note {
+    font-size: 12px; color: var(--ink-soft);
+    margin-top: 14px; line-height: 1.6;
+  }
+</style>
+</head>
+<body data-tier="Standard">
+<main>
+
+  <div class="intro">
+    <div class="lab">Start your invite</div>
+    <svg width="54" height="24" viewBox="0 0 44 20" style="display:block;margin:16px auto 8px" aria-hidden="true">
+      <path d="M4 10 Q22 2 40 10" stroke="#b08968" stroke-width="1" fill="none"/>
+      <circle cx="22" cy="4" r="1.2" fill="#b08968"/>
+    </svg>
+    <h1>Tell us about your day</h1>
+    <hr class="divider">
+    <p class="lede">Fill in what you can. Anything you leave blank, we'll circle back on.</p>
+  </div>
+
+  <form id="intake-form">
+
+    <!-- TIER -->
+    <fieldset>
+      <legend>Your tier</legend>
+      <p class="hint">Which tier would you like?</p>
+      <div class="tier-pills">
+        <button type="button" class="tier-pill" data-tier-select="Basic">Basic · S$68</button>
+        <button type="button" class="tier-pill active" data-tier-select="Standard">Standard · S$128</button>
+        <button type="button" class="tier-pill" data-tier-select="Premium">Premium · S$188</button>
+      </div>
+
+      <label style="margin-top:20px">Optional add-ons</label>
+      <div class="opt-grid">
+        <label class="opt"><input type="checkbox" name="addon" value="Post-wedding guest photo upload (+S$30)"><span class="opt-text">Post-wedding guest photo upload<span class="opt-price">+S$30</span></span></label>
+        <label class="opt"><input type="checkbox" name="addon" value="Post-wedding thank-you update (+S$15)"><span class="opt-text">Post-wedding thank-you update<span class="opt-price">+S$15</span></span></label>
+        <label class="opt"><input type="checkbox" name="addon" value="Accommodation suggestions (+S$15)"><span class="opt-text">Accommodation suggestions<span class="opt-price">+S$15</span></span></label>
+        <label class="opt"><input type="checkbox" name="addon" value="First-dance Spotify embed (+S$15)"><span class="opt-text">First-dance Spotify embed<span class="opt-price">+S$15</span></span></label>
+        <label class="opt"><input type="checkbox" name="addon" value="Kids policy section (+S$10)"><span class="opt-text">Kids policy section<span class="opt-price">+S$10</span></span></label>
+        <label class="opt"><input type="checkbox" name="addon" value="Custom section (from S$30)"><span class="opt-text">Custom section, designed to your brief<span class="opt-price">from S$30</span></span></label>
+      </div>
+    </fieldset>
+
+    <!-- THE COUPLE -->
+    <fieldset>
+      <legend>The couple</legend>
+      <p class="hint">The names that will appear big and beautiful on the invite.</p>
+      <div class="row">
+        <div>
+          <label>Partner 1 name</label>
+          <input type="text" name="name1" placeholder="e.g. Wei Ming" required>
+        </div>
+        <div>
+          <label>Partner 2 name</label>
+          <input type="text" name="name2" placeholder="e.g. Priya" required>
+        </div>
+      </div>
+      <label>Your hashtag (optional)</label>
+      <input type="text" name="hashtag" placeholder="e.g. #weiloveshispriya">
+    </fieldset>
+
+    <!-- STYLE / VIBE -->
+    <fieldset>
+      <legend>Style &amp; vibe</legend>
+      <p class="hint">We work in a warm, classic aesthetic by default. Tell us the mood you're imagining — colours, fonts, references. Small tweaks are included; larger reworks may need a quote.</p>
+      <label>What vibe are you going for?</label>
+      <textarea name="style_notes" placeholder="e.g. 'Something minimal and modern, with muted greens', or 'Classic warm is perfect', or 'Here's a Pinterest board: [link]'"></textarea>
+    </fieldset>
+
+    <!-- THE DATE -->
+    <fieldset>
+      <legend>The date</legend>
+      <div class="row">
+        <div>
+          <label>Wedding date</label>
+          <input type="date" name="date" required>
+        </div>
+        <div>
+          <label>RSVP deadline</label>
+          <input type="date" name="rsvp_by">
+        </div>
+      </div>
+    </fieldset>
+
+    <!-- FIRST EVENT -->
+    <fieldset>
+      <legend>Main event</legend>
+      <p class="hint">Your primary celebration — ceremony, reception, or combined.</p>
+      <label>What to call it</label>
+      <input type="text" name="event1_name" placeholder="e.g. Reception Dinner / Solemnisation / Ceremony & Lunch">
+      <div class="row">
+        <div>
+          <label>Start time</label>
+          <input type="time" name="event1_time">
+        </div>
+        <div>
+          <label>Dress code</label>
+          <input type="text" name="event1_dress" placeholder="e.g. Semi-formal">
+        </div>
+      </div>
+      <label>Venue name</label>
+      <input type="text" name="event1_venue" placeholder="e.g. Grand Copthorne Waterfront">
+      <label>Venue address</label>
+      <input type="text" name="event1_addr" placeholder="e.g. 392 Havelock Road, Singapore 169663">
+    </fieldset>
+
+    <!-- SECOND EVENT (Standard/Premium) -->
+    <fieldset class="standard-only">
+      <legend>Second event (optional)</legend>
+      <p class="hint">Leave blank if you're only having one event.</p>
+      <label>What to call it</label>
+      <input type="text" name="event2_name" placeholder="e.g. Solemnisation">
+      <div class="row">
+        <div>
+          <label>Start time</label>
+          <input type="time" name="event2_time">
+        </div>
+        <div>
+          <label>Dress code</label>
+          <input type="text" name="event2_dress" placeholder="e.g. Garden attire">
+        </div>
+      </div>
+      <label>Venue name</label>
+      <input type="text" name="event2_venue">
+      <label>Venue address</label>
+      <input type="text" name="event2_addr">
+    </fieldset>
+
+    <!-- OUR STORY (Standard/Premium) -->
+    <fieldset class="standard-only">
+      <legend>Our story</legend>
+      <p class="hint">A few warm lines about how you met, proposed, or decided. Pick a template to get started, or write your own.</p>
+      <label>Pick a template</label>
+      <div class="templates">
+        <button type="button" class="template-btn" data-target="story" data-text="Two hearts, one quiet evening at a kopitiam, and a conversation that never really ended.">"Two hearts, one quiet evening at a kopitiam, and a conversation that never really ended."</button>
+        <button type="button" class="template-btn" data-target="story" data-text="A chance meeting, a shared umbrella, and a story that grew one rainy afternoon at a time.">"A chance meeting, a shared umbrella, and a story that grew one rainy afternoon at a time."</button>
+        <button type="button" class="template-btn" data-target="story" data-text="Years of friendship, one brave question, and a yes that changed everything.">"Years of friendship, one brave question, and a yes that changed everything."</button>
+      </div>
+      <label>Your version</label>
+      <textarea name="story" id="story" placeholder="Write in your own words, or tweak one of the templates above."></textarea>
+    </fieldset>
+
+    <!-- DRESS CODE (Standard/Premium) -->
+    <fieldset class="standard-only">
+      <legend>Dress code palette</legend>
+      <p class="hint">Pick colour cues to guide your guests. Free-text — e.g. "sage, cream, rose" or "earth tones".</p>
+      <label>Palette description</label>
+      <input type="text" name="palette" placeholder="e.g. Dusty rose, sage, cream, gold">
+      <label>Any restrictions?</label>
+      <input type="text" name="palette_avoid" placeholder="e.g. Kindly avoid white">
+    </fieldset>
+
+    <!-- GALLERY (Standard/Premium) -->
+    <fieldset class="standard-only">
+      <legend>Photos</legend>
+      <p class="hint">The invite has a 6-photo gallery. After submitting, reply to our WhatsApp with your 6 chosen photos (pre-wedding shoot, travel, candids — whatever feels like you).</p>
+      <label>Any photo notes?</label>
+      <textarea name="photo_notes" placeholder="e.g. 'Please use the beach photos as the feature' or 'Skip the gallery, we want text-only'"></textarea>
+    </fieldset>
+
+    <!-- GIFTS (Standard/Premium) -->
+    <fieldset class="standard-only">
+      <legend>Gifts &amp; PayNow</legend>
+      <p class="hint">Most Singapore couples include a PayNow QR. Skip this section if you'd rather not.</p>
+      <label>PayNow number or UEN</label>
+      <input type="tel" name="paynow_num" placeholder="e.g. 9123 4567">
+      <label>Name on PayNow</label>
+      <input type="text" name="paynow_name" placeholder="e.g. Wei Ming Tan">
+      <label>Gift message</label>
+      <div class="templates">
+        <button type="button" class="template-btn" data-target="gift_msg" data-text="Your presence is the greatest gift. If you wish to send a token of blessing, it would be warmly received.">"Your presence is the greatest gift. If you wish to send a token of blessing, it would be warmly received."</button>
+        <button type="button" class="template-btn" data-target="gift_msg" data-text="We have all we need, but should you wish to bless us, a small gift would be dearly appreciated.">"We have all we need, but should you wish to bless us, a small gift would be dearly appreciated."</button>
+      </div>
+      <textarea name="gift_msg" id="gift_msg" placeholder="Write in your own words, or pick a template above."></textarea>
+    </fieldset>
+
+    <!-- RSVP (all tiers) -->
+    <fieldset>
+      <legend>RSVP</legend>
+      <p class="hint">Where should RSVPs land? This is the WhatsApp number guests will tap.</p>
+      <label>RSVP WhatsApp number</label>
+      <input type="tel" name="rsvp_wa" placeholder="e.g. 9123 4567">
+      <label>RSVP message template</label>
+      <div class="templates">
+        <button type="button" class="template-btn" data-target="rsvp_msg" data-text="Hi! I will be attending your wedding ✨">"Hi! I will be attending your wedding ✨" — short &amp; sweet</button>
+        <button type="button" class="template-btn" data-target="rsvp_msg" data-text="Hi, RSVP-ing for your wedding! I will / won't be attending. Guests: ___. Dietary: ___.">With dietary + guest count field</button>
+      </div>
+      <textarea name="rsvp_msg" id="rsvp_msg" placeholder="Pre-filled message guests see when they tap RSVP."></textarea>
+    </fieldset>
+
+    <!-- STORY & COUPLE BIOS (Premium) -->
+    <fieldset class="premium-only">
+      <legend>Meet the couple</legend>
+      <p class="hint">A short bio for each partner — 1–2 lines. Keep it playful.</p>
+      <div class="row">
+        <div>
+          <label>Partner 1 bio</label>
+          <textarea name="bio1" placeholder="e.g. Architect, home cook, incurable coffee snob."></textarea>
+        </div>
+        <div>
+          <label>Partner 2 bio</label>
+          <textarea name="bio2" placeholder="e.g. Pediatrician, yoga teacher, reader of three books at once."></textarea>
+        </div>
+      </div>
+    </fieldset>
+
+    <!-- TIMELINE (Premium) -->
+    <fieldset class="premium-only">
+      <legend>Day-of timeline</legend>
+      <p class="hint">Rough run-of-show. One line per time block, free-form.</p>
+      <label>Your timeline</label>
+      <textarea name="timeline" rows="6" placeholder="e.g.
+10:30 — Guests arrive, light refreshments
+11:00 — Solemnisation
+12:00 — Lunch reception
+6:00 — Cocktails at the ballroom foyer
+6:30 — March-in &amp; dinner
+10:30 — Evening ends"></textarea>
+    </fieldset>
+
+    <!-- WEDDING PARTY (Premium) -->
+    <fieldset class="premium-only">
+      <legend>Wedding party</legend>
+      <p class="hint">Names of parents, best man, maid of honour — anyone you want listed.</p>
+      <label>Wedding party list</label>
+      <textarea name="party" rows="4" placeholder="e.g.
+Father of the groom — Mr Tan Kok Leong
+Mother of the bride — Mrs Anita Kumar
+Best man — Marcus Lim
+Maid of honour — Sarah Nair"></textarea>
+    </fieldset>
+
+    <!-- LANGUAGES (Premium) -->
+    <fieldset class="premium-only">
+      <legend>Languages</legend>
+      <p class="hint">Premium includes a language toggle. English is always included. Tick any others you'd like.</p>
+      <div class="opt-grid">
+        <label class="opt"><input type="checkbox" name="lang" value="Chinese 中文"><span class="opt-text">中文 · Chinese</span></label>
+        <label class="opt"><input type="checkbox" name="lang" value="Bahasa Melayu"><span class="opt-text">Bahasa Melayu</span></label>
+        <label class="opt"><input type="checkbox" name="lang" value="Tamil தமிழ்"><span class="opt-text">தமிழ் · Tamil</span></label>
+      </div>
+    </fieldset>
+
+    <!-- FAQ (Premium) -->
+    <fieldset class="premium-only">
+      <legend>FAQ</legend>
+      <p class="hint">Anticipate questions guests will ask. Skip any that don't apply.</p>
+      <label>Plus-ones policy</label>
+      <input type="text" name="faq_plusones" placeholder="e.g. Check your invite. If unsure, message us.">
+      <label>Kids policy</label>
+      <input type="text" name="faq_kids" placeholder="e.g. Family children welcome; reception adults-only.">
+      <label>Dietary info</label>
+      <input type="text" name="faq_dietary" placeholder="e.g. Halal / veggie / allergies all catered for — tell us at RSVP.">
+      <label>Anything else to cover?</label>
+      <textarea name="faq_other" placeholder="Any other questions you'd like answered upfront."></textarea>
+    </fieldset>
+
+    <!-- LIVESTREAM (Premium) -->
+    <fieldset class="premium-only">
+      <legend>Livestream</legend>
+      <p class="hint">Optional. For overseas family who can't make it.</p>
+      <label>Livestream URL</label>
+      <input type="text" name="livestream_url" placeholder="e.g. Zoom, YouTube Live, or Google Meet link">
+    </fieldset>
+
+    <!-- POINT OF CONTACT (Premium) -->
+    <fieldset class="premium-only">
+      <legend>Point of contact</legend>
+      <p class="hint">A friend who fields guest questions on your behalf. Optional but loved.</p>
+      <div class="row">
+        <div>
+          <label>Their name</label>
+          <input type="text" name="poc_name" placeholder="e.g. Sarah">
+        </div>
+        <div>
+          <label>Their WhatsApp</label>
+          <input type="tel" name="poc_wa" placeholder="e.g. 9876 5432">
+        </div>
+      </div>
+      <label>What to say about them</label>
+      <textarea name="poc_role" placeholder="e.g. Our maid of honour, happy to help with any logistics"></textarea>
+    </fieldset>
+
+    <!-- YOUR CONTACT -->
+    <fieldset>
+      <legend>Your contact</legend>
+      <p class="hint">Where we send the final link for review.</p>
+      <label>Your WhatsApp number</label>
+      <input type="tel" name="your_wa" placeholder="e.g. 9123 4567" required>
+      <label>Any other notes for us?</label>
+      <textarea name="notes" placeholder="Anything we should know, any special requests."></textarea>
+    </fieldset>
+
+    <!-- SUBMIT -->
+    <div class="submit-wrap">
+      <button type="submit" class="btn-submit">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20.5 3.5A11 11 0 0 0 3.6 17.3L2 22l4.9-1.5A11 11 0 1 0 20.5 3.5z" stroke="#faf5ee" stroke-width="1.5"/></svg>
+        Send via WhatsApp
+      </button>
+      <p class="submit-note">Your answers will open in WhatsApp as a pre-filled message.<br>Just hit send to deliver it to us.</p>
+    </div>
+
+  </form>
+
+</main>
+
+<script>
+(function () {
+
+  // Read tier from URL param if present
+  var params = new URLSearchParams(window.location.search);
+  var urlTier = params.get('tier');
+  if (urlTier && ['Basic','Standard','Premium'].indexOf(urlTier) !== -1) {
+    setTier(urlTier);
+  }
+
+  // Tier pill selection
+  document.querySelectorAll('.tier-pill').forEach(function (b) {
+    b.addEventListener('click', function () {
+      setTier(b.getAttribute('data-tier-select'));
+    });
+  });
+
+  function setTier(tier) {
+    document.body.setAttribute('data-tier', tier);
+    document.querySelectorAll('.tier-pill').forEach(function (b) {
+      b.classList.toggle('active', b.getAttribute('data-tier-select') === tier);
+    });
+  }
+
+  // Template buttons — fill the paired textarea
+  document.querySelectorAll('.template-btn').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var target = document.getElementById(b.getAttribute('data-target'));
+      if (target) target.value = b.getAttribute('data-text');
+    });
+  });
+
+  // Form submit — build pre-filled WhatsApp message
+  document.getElementById('intake-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    var tier = document.body.getAttribute('data-tier');
+    var lines = [];
+    lines.push('🌸 New wedding invite order');
+    lines.push('Tier: ' + tier);
+    lines.push('');
+
+    var form = e.target;
+    var data = new FormData(form);
+
+    // Collect addons
+    var addons = data.getAll('addon');
+    if (addons.length) {
+      lines.push('Add-ons:');
+      addons.forEach(function (a) { lines.push('  • ' + a); });
+      lines.push('');
+    }
+
+    // Field groups
+    var groups = [
+      { title: 'The couple', fields: [
+        ['name1', 'Partner 1'],
+        ['name2', 'Partner 2'],
+        ['hashtag', 'Hashtag'],
+      ]},
+      { title: 'Style & vibe', fields: [
+        ['style_notes', 'Notes'],
+      ]},
+      { title: 'The date', fields: [
+        ['date', 'Wedding date'],
+        ['rsvp_by', 'RSVP deadline'],
+      ]},
+      { title: 'Main event', fields: [
+        ['event1_name', 'Name'],
+        ['event1_time', 'Time'],
+        ['event1_dress', 'Dress code'],
+        ['event1_venue', 'Venue'],
+        ['event1_addr', 'Address'],
+      ]},
+      { title: 'Second event', fields: [
+        ['event2_name', 'Name'],
+        ['event2_time', 'Time'],
+        ['event2_dress', 'Dress code'],
+        ['event2_venue', 'Venue'],
+        ['event2_addr', 'Address'],
+      ], tiers: ['Standard','Premium']},
+      { title: 'Our story', fields: [
+        ['story', 'Story'],
+      ], tiers: ['Standard','Premium']},
+      { title: 'Dress code palette', fields: [
+        ['palette', 'Palette'],
+        ['palette_avoid', 'Avoid'],
+      ], tiers: ['Standard','Premium']},
+      { title: 'Photos', fields: [
+        ['photo_notes', 'Photo notes'],
+      ], tiers: ['Standard','Premium']},
+      { title: 'Gifts', fields: [
+        ['paynow_num', 'PayNow'],
+        ['paynow_name', 'PayNow name'],
+        ['gift_msg', 'Gift message'],
+      ], tiers: ['Standard','Premium']},
+      { title: 'RSVP', fields: [
+        ['rsvp_wa', 'WhatsApp'],
+        ['rsvp_msg', 'Pre-filled message'],
+      ]},
+      { title: 'Meet the couple', fields: [
+        ['bio1', 'Bio 1'],
+        ['bio2', 'Bio 2'],
+      ], tiers: ['Premium']},
+      { title: 'Day-of timeline', fields: [
+        ['timeline', 'Timeline'],
+      ], tiers: ['Premium']},
+      { title: 'Wedding party', fields: [
+        ['party', 'Party'],
+      ], tiers: ['Premium']},
+      { title: 'FAQ', fields: [
+        ['faq_plusones', 'Plus-ones'],
+        ['faq_kids', 'Kids'],
+        ['faq_dietary', 'Dietary'],
+        ['faq_other', 'Other'],
+      ], tiers: ['Premium']},
+      { title: 'Livestream', fields: [
+        ['livestream_url', 'URL'],
+      ], tiers: ['Premium']},
+      { title: 'Point of contact', fields: [
+        ['poc_name', 'Name'],
+        ['poc_wa', 'WhatsApp'],
+        ['poc_role', 'Role'],
+      ], tiers: ['Premium']},
+      { title: 'Your contact', fields: [
+        ['your_wa', 'Your WhatsApp'],
+        ['notes', 'Notes'],
+      ]},
+    ];
+
+    // Languages (Premium only)
+    var languages = data.getAll('lang');
+
+    groups.forEach(function (g) {
+      if (g.tiers && g.tiers.indexOf(tier) === -1) return;
+      var groupLines = [];
+      g.fields.forEach(function (f) {
+        var val = (data.get(f[0]) || '').toString().trim();
+        if (val) groupLines.push('  • ' + f[1] + ': ' + val);
+      });
+      if (groupLines.length) {
+        lines.push(g.title + ':');
+        lines.push.apply(lines, groupLines);
+        lines.push('');
+      }
+    });
+
+    // Languages section inline
+    if (tier === 'Premium' && languages.length) {
+      lines.push('Languages:');
+      languages.forEach(function (l) { lines.push('  • ' + l); });
+      lines.push('');
+    }
+
+    var msg = lines.join('\n');
+    var url = 'https://wa.me/6580833409?text=' + encodeURIComponent(msg);
+    window.open(url, '_blank');
+  });
+
+})();
+</script>
+
+</body>
+</html>
